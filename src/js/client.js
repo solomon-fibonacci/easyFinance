@@ -6,3 +6,5 @@ class SampleComponent extends React.Component {
 		<p>I'm not a real component!</p>
 	}
 }
+
+// This might change to jquery eventually
