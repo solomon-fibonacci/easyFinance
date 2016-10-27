@@ -7,20 +7,17 @@ var financeApp = {
   },
 
   loadData: function() {
-    if ($.trim(localStorage.getItem('transactions')).length > 0) {
-      this.tasks = $.parseJSON(localStorage.getItem('transactions')).tasks;
+    if ($.trim(localStorage.getItem('finData')).length > 0) {
+      this.transactions = $.parseJSON(localStorage.getItem('finData')).tasks;
     } else {
-      this.tasks = [];
+      this.transactions = [];
     }
     this.displayDate = moment().format("ddd, Do MMM");
   },
 
   cacheDom: function() {
     this.$doc = $('#container');
-    this.$forwardButton = this.$doc.find('#forward');
-    this.$backButton = this.$doc.find('#back');
-    this.$displayDate = this.$doc.find('h2');
-    this.$inputForm = this.$doc.find('#inputForm');
+    this.$inputForm = this.$doc.find('#tras');
     this.$input = this.$doc.find('#inputText');
     this.$errorSpan = this.$doc.find('#errorSpan');
     this.$addButton = this.$doc.find('#addItem');
