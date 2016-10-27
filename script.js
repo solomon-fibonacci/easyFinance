@@ -38,8 +38,8 @@ var financeApp = {
   },
 
   saveTransactions: function() {
-    var ingoingData = JSON.stringify({ tasks: this.tasks });
-    localStorage.setItem('todos', ingoingData);
+    var ingoingData = JSON.stringify({ tasks: this.transactions});
+    localStorage.setItem('finData', ingoingData);
   },
 
   filterTransactions: function() {
