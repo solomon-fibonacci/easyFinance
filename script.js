@@ -17,7 +17,7 @@ var financeApp = {
 
   cacheDom: function() {
     this.$doc = $('#container');
-    this.$inputForm = this.$doc.find('#tras');
+    this.$inputForm = this.$doc.find('#transaction-input-form');
     this.$transAmount = this.$doc.find('#transaction-amount');
     this.$transDate = this.$doc.find('#transaction-date');
     this.$transNote = this.$doc.find('#note');
@@ -32,23 +32,6 @@ var financeApp = {
   saveTransactions: function() {
     var ingoingData = JSON.stringify({ tasks: this.transactions });
     localStorage.setItem('finData', ingoingData);
-  },
-
-  filterTransactions: function() {
-    var today = moment();
-    var filterDate = moment(this.displayDate, 'ddd, Do MMM');
-    var filteredTasks = this.tasks.filter(function(t) {
-      var taskDate = moment(t.date, 'DDMMYYYY');
-      return (
-        taskDate.isSame(filterDate, 'day') && t.ischecked ||
-        filterDate.isSame(today, 'day') && !t.ischecked && today.isSameOrAfter(taskDate, 'day') ||
-        taskDate.isSame(filterDate, 'day') && filterDate.isAfter(today, 'day')
-      );
-    });
-    var data = {
-      tasks: filteredTasks,
-    };
-    return data;
   },
 
   render: function() {
@@ -78,16 +61,6 @@ var financeApp = {
   },
 
   renderEditBox: function(event) {
-    var $items = $(event.target).closest('ul').find('.todoItemText');
-    var $boxes = $(event.target).closest('ul').find('.editBox');
-    $boxes.hide();
-    $items.fadeIn(150);
-    var $text = $(event.target).closest('li').find('.todoItemText');
-    $text.fadeOut(50, function() {
-      var $box = $(event.target).closest('li').find('.editBox');
-      $box.children('input').val($.trim($text.contents().text()));
-      $box.addClass('visibleEditBox').fadeIn(150);
-    });
   },
 
   isInputValid: function() {
