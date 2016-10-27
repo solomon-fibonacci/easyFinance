@@ -1,5 +1,5 @@
 var financeApp = {
-	init: function() {
+  init: function() {
     this.loadData();
     this.cacheDom();
     this.bindEvents();
@@ -26,18 +26,11 @@ var financeApp = {
   },
 
   bindEvents: function() {
-    this.$forwardButton.on('click', this.goForward.bind(this));
-    this.$backButton.on('click', this.goBack.bind(this));
-    this.$inputForm.on('submit', this.addItem.bind(this));
-    this.$input.on('focus', this.render.bind(this));
-    this.$listDiv.on('change', '.todoCheckbox', this.tickItem.bind(this));
-    this.$listDiv.on('click', '.delButton', this.deleteItem.bind(this));
-    this.$listDiv.on('click', '.editButton', this.renderEditBox.bind(this));
-    this.$listDiv.on('submit', '.editBox', this.updateItem.bind(this));
+    this.$inputForm.on('submit', this.addTransaction.bind(this));
   },
 
   saveTransactions: function() {
-    var ingoingData = JSON.stringify({ tasks: this.transactions});
+    var ingoingData = JSON.stringify({ tasks: this.transactions });
     localStorage.setItem('finData', ingoingData);
   },
 
@@ -49,7 +42,7 @@ var financeApp = {
       return (
         taskDate.isSame(filterDate, 'day') && t.ischecked ||
         filterDate.isSame(today, 'day') && !t.ischecked && today.isSameOrAfter(taskDate, 'day') ||
-        taskDate.isSame(filterDate, 'day')  && filterDate.isAfter(today, 'day')
+        taskDate.isSame(filterDate, 'day') && filterDate.isAfter(today, 'day')
       );
     });
     var data = {
@@ -96,22 +89,27 @@ var financeApp = {
       $box.addClass('visibleEditBox').fadeIn(150);
     });
   },
-  
+
+  isInputValid: function() {
+
+  },
+
   addTransaction: function(event) {
+    if (this.isInputFormValid(event.target)) {
+    	//prepare the input into appropriate format
+    	//append to standing data
+    	//save data
+    }
   },
 
-  updateTransaction: function(event) {
-  },
+  updateTransaction: function(event) {},
 
 
-  deleteTransaction: function() {
-  },
+  deleteTransaction: function() {},
 
-  goBack: function() {
-  },
+  goBack: function() {},
 
-  goForward: function() {
-  },
+  goForward: function() {},
 
 };
 
