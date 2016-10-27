@@ -9,9 +9,9 @@
   <div id="container">
     <div id="transaction-input-div">
       <form id="transaction-input-form">
-        <input type="text" placeholder="Amount">
+        <input type="text" placeholder="Amount" id="transaction-amount">
         <br>
-        <select>
+        <select id="transaction-category">
           <option disabled selected>Category</option>
           <option>Transportation</option>
           <option>Feeding</option>
@@ -19,12 +19,12 @@
           <option></option>
         </select>
         <br>
-        <input type="text" placeholder="Note">
+        <input type="text" placeholder="Note" id="note">
         <br>
-        <input type="date">
+        <input type="date" id="transaction-date">
         <br>
         <br>
-        <input type="submit" value="Add Transaction">
+        <input type="submit" value="Add Transaction" id="add-transaction">
         <br>
       </form>
     </div>

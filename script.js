@@ -18,11 +18,10 @@ var financeApp = {
   cacheDom: function() {
     this.$doc = $('#container');
     this.$inputForm = this.$doc.find('#tras');
-    this.$input = this.$doc.find('#inputText');
-    this.$errorSpan = this.$doc.find('#errorSpan');
-    this.$addButton = this.$doc.find('#addItem');
-    this.$listDiv = this.$doc.find('#listDiv');
-    this.$ul = this.$doc.find('ul');
+    this.$transAmount = this.$doc.find('#transaction-amount');
+    this.$transDate = this.$doc.find('#transaction-date');
+    this.$transNote = this.$doc.find('#note');
+    this.$addButton = this.$doc.find('#add-transaction');
     this.template = this.$doc.find('#todoTemplate').html();
   },
 
