@@ -35,9 +35,9 @@ var financeApp = {
   },
 
   render: function() {
-    var data = this.filterTasks(),
+    var data = this.filterTransactions(),
       todaysDate = moment();
-    this.$input.val('');
+    this.$input.val(''); // find a jquery way to reset form values
     this.$ul.html(Mustache.render(this.template, data));
     this.$displayDate.html(this.displayDate);
     if (moment(this.displayDate, 'ddd, Do MMM').isBefore(todaysDate, 'day')) {
