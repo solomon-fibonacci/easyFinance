@@ -15,6 +15,10 @@ var financeApp = {
     this.displayDate = moment().format("ddd, Do MMM");
   },
 
+  filterTransactions: function() {
+
+  },
+
   cacheDom: function() {
     this.$doc = $('#container');
     this.$inputForm = this.$doc.find('#transaction-input-form');
