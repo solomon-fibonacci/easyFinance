@@ -67,9 +67,17 @@ var financeApp = {
 
   },
 
+  isInputFormValid: function($transInputForm) {
+  	var amount = $transInputForm.children('#transaction-amount');
+  	var note = $transInputForm.children('#note');
+  	var date = $transInputForm.children('#transaction-date');
+  	
+  },
+
   addTransaction: function(event) {
     if (this.isInputFormValid(event.target)) {
     	//prepare the input into appropriate format
+
     	//append to standing data
     	//save data
     }
