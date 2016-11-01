@@ -85,9 +85,9 @@ var financeApp = {
         note = $transInputForm.children('#note'),
         date = $transInputForm.children('#transaction-date'),
         category = $transInputForm.children('#transaction-category');
-      var newTransaction = { amount, note, category, date};
+      var newTransaction = { amount, note, category, date };
       this.transactions.push(newTransaction);
-        //save data
+      this.saveTransactions();
     }
   },
 
