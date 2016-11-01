@@ -34,7 +34,7 @@ var financeApp = {
   },
 
   saveTransactions: function() {
-    var ingoingData = JSON.stringify({ tasks: this.transactions });
+    var ingoingData = JSON.stringify({ transactions: this.transactions });
     localStorage.setItem('finData', ingoingData);
   },
 
@@ -64,26 +64,30 @@ var financeApp = {
     this.$errorSpan.delay(10000).fadeOut(1000);
   },
 
-  renderEditBox: function(event) {
-  },
+  renderEditBox: function(event) {},
 
   isInputValid: function() {
 
   },
 
   isInputFormValid: function($transInputForm) {
-  	var amount = $transInputForm.children('#transaction-amount');
-  	var note = $transInputForm.children('#note');
-  	var date = $transInputForm.children('#transaction-date');
-  	
+    var amount = $transInputForm.children('#transaction-amount'),
+      note = $transInputForm.children('#note'),
+      date = $transInputForm.children('#transaction-date'),
+      category = $transInputForm.children('#transaction-category');
+    return amount.length && note.length && date.length;
   },
 
   addTransaction: function(event) {
     if (this.isInputFormValid(event.target)) {
-    	//prepare the input into appropriate format
-
-    	//append to standing data
-    	//save data
+      $transInputForm = event.target;
+      var amount = $transInputForm.children('#transaction-amount'),
+        note = $transInputForm.children('#note'),
+        date = $transInputForm.children('#transaction-date'),
+        category = $transInputForm.children('#transaction-category');
+      var newTransaction = { amount, note, category, date};
+      this.transactions.push(newTransaction);
+        //save data
     }
   },
 
