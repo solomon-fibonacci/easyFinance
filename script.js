@@ -26,6 +26,7 @@ var financeApp = {
     this.$transDate = this.$doc.find('#transaction-date');
     this.$transNote = this.$doc.find('#note');
     this.$addButton = this.$doc.find('#add-transaction');
+    this.$dataDiv = this.$doc.find('#data-display')
     this.template = this.$doc.find('#todoTemplate').html();
   },
 
@@ -41,8 +42,8 @@ var financeApp = {
   render: function() {
     var data = this.filterTransactions(),
       todaysDate = moment();
-    this.$input.val(''); // find a jquery way to reset form values
-    this.$ul.html(Mustache.render(this.template, data));
+    // this.$input.val(''); // find a jquery way to reset form values
+    this.$dataDiv.html(Mustache.render(this.template, data));
     this.$displayDate.html(this.displayDate);
     if (moment(this.displayDate, 'ddd, Do MMM').isBefore(todaysDate, 'day')) {
       this.$input.prop('disabled', true);
@@ -50,7 +51,6 @@ var financeApp = {
     } else {
       this.$input.prop('disabled', false);
     }
-    this.renderCheckboxes();
   },
 
 
