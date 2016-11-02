@@ -26,7 +26,7 @@ var financeApp = {
     this.$transDate = this.$doc.find('#transaction-date');
     this.$transNote = this.$doc.find('#note');
     this.$addButton = this.$doc.find('#add-transaction');
-    this.$dataDiv = this.$doc.find('#data-display')
+    this.$dataDiv = this.$doc.find('#data-display');
     this.template = this.$doc.find('#todoTemplate').html();
   },
 
