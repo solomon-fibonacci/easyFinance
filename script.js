@@ -9,10 +9,8 @@ var financeApp = {
   loadData: function() {
     if ($.trim(localStorage.getItem('finData')).length > 0) {
       this.data = $.parseJSON(localStorage.getItem('finData'));
-      console.log("I did this");
     } else {
-      this.data = [];
-      console.log("I did that");
+      this.data = {transactions:[]};
     }
     this.displayDate = moment().format("ddd, Do MMM");
   },
@@ -52,13 +50,7 @@ var financeApp = {
 
 
   renderError: function(errorType) {
-    console.log('Hey there!');
-    var errorMsg = errorType == 'longer' ? 'Please limit your entry to 140 characters.' : 'Entry cannot be empty.';
-    console.log(errorMsg);
-    this.$errorSpan.html(errorMsg);
-    console.log(this.$errorSpan);
-    this.$errorSpan.fadeIn(1000);
-    this.$errorSpan.delay(10000).fadeOut(1000);
+  	
   },
 
   renderEditBox: function(event) {},
@@ -80,16 +72,13 @@ var financeApp = {
   },
 
   addTransaction: function(event) {
-    event.preventDefault();
-    console.log(this.data.transactions);
     var $form = $(event.target),
       newTransaction = this.isInputFormValid($form);
 
     if (newTransaction) {
-      console.log(this.data.transactions);
       this.data.transactions.push(newTransaction);
       this.saveTransactions();
-      console.log(this.data.transactions);
+      this.render();
     } else {
       console.log("What have you done?");
     }
