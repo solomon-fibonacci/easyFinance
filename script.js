@@ -26,8 +26,9 @@ var financeApp = {
     this.$transDate = this.$doc.find('#transaction-date');
     this.$transNote = this.$doc.find('#note');
     this.$addButton = this.$doc.find('#add-transaction');
-    this.$dataDiv = this.$doc.find('#data-display');
-    this.template = this.$doc.find('#transactionListing').html();
+    this.$dataDiv = this.$doc.find('#transaction-listing-div');
+    this.$transListing = this.$doc.find('#transaction-listing');
+    this.template = this.$doc.find('#template').html();
   },
 
   bindEvents: function() {
@@ -43,7 +44,8 @@ var financeApp = {
     var data = this.filterTransactions(),
       todaysDate = moment();
     // this.$input.val(''); // find a jquery way to reset form values
-    this.$dataDiv.html(Mustache.render(this.template, data));
+    console.log("this");
+    this.$transListing.html(Mustache.render(this.template, data));
   },
 
 
