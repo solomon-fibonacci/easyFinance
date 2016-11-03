@@ -44,12 +44,6 @@ var financeApp = {
       todaysDate = moment();
     // this.$input.val(''); // find a jquery way to reset form values
     this.$dataDiv.html(Mustache.render(this.template, data));
-    if (moment(this.displayDate, 'ddd, Do MMM').isBefore(todaysDate, 'day')) {
-      this.$input.prop('disabled', true);
-      this.$ul.children('li').find('.editButton').hide();
-    } else {
-      this.$input.prop('disabled', false);
-    }
   },
 
 
