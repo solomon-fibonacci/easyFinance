@@ -8,9 +8,11 @@ var financeApp = {
 
   loadData: function() {
     if ($.trim(localStorage.getItem('finData')).length > 0) {
-      this.transactions = $.parseJSON(localStorage.getItem('finData')).tasks;
+      this.data = $.parseJSON(localStorage.getItem('finData'));
+      console.log("I did this");
     } else {
-      this.transactions = [];
+      this.data = [];
+      console.log("I did that");
     }
     this.displayDate = moment().format("ddd, Do MMM");
   },
@@ -36,7 +38,7 @@ var financeApp = {
   },
 
   saveTransactions: function() {
-    var ingoingData = JSON.stringify({ transactions: this.transactions });
+    var ingoingData = JSON.stringify({ transactions: this.data.transactions });
     localStorage.setItem('finData', ingoingData);
   },
 
@@ -64,30 +66,29 @@ var financeApp = {
 
   },
 
-  isInputFormValid: function($transInputForm) {
-    var $formFields = $transInputForm.children(),
-      amount = $formFields.find('#transaction-amount'),
-      note = $formFields.find('#note'),
-      date = $formFields.find('#transaction-date'),
-      category = $formFields.find('#transaction-category');
-      console.log($formFields);
-    console.log(amount);
-    console.log(note.val());
-    console.log(date.val());
-    return amount.length && note.length && date.length;
+  isInputFormValid: function($form) {
+    var amount = $form.find('input#transaction-amount').val(),
+      note = $form.find('#note').val(),
+      date = $form.find('#transaction-date').val(),
+      category = $form.find('#transaction-category').val();
+    if (amount.length, note.length && date.length && category.length) {
+      return { amount, note, category, date };
+    } else {
+      return false;
+    }
   },
 
   addTransaction: function(event) {
-  	event.preventDefault();
-    if (this.isInputFormValid($(event.target))) {
-      $transInputForm = event.target;
-      var amount = $transInputForm.children('#transaction-amount'),
-        note = $transInputForm.children('#note'),
-        date = $transInputForm.children('#transaction-date'),
-        category = $transInputForm.children('#transaction-category');
-      var newTransaction = { amount, note, category, date };
-      this.transactions.push(newTransaction);
+    event.preventDefault();
+    console.log(this.data.transactions);
+    var $form = $(event.target),
+      newTransaction = this.isInputFormValid($form);
+
+    if (newTransaction) {
+      console.log(this.data.transactions);
+      this.data.transactions.push(newTransaction);
       this.saveTransactions();
+      console.log(this.data.transactions);
     } else {
       console.log("What have you done?");
     }
