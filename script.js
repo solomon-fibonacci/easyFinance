@@ -18,7 +18,8 @@ var financeApp = {
   },
 
   filterTransactions: function() {
-
+  	//do filtering here
+  	return this.data;
   },
 
   cacheDom: function() {

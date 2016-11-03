@@ -45,20 +45,15 @@
       <div id="transaction-listing-div">
         <ul id="transaction-listing">
           <script id="template" type="text/template">
+            {{#transactions}}
             <li>
               <div>
-                <p>Transportation</p>
-                <p>Lagos to Kampala</p>
+                <p>{{category}}</p>
+                <p>{{note}}</p>
               </div>
-              <div>500</div>
+              <div>{{amount}}</div>
             </li>
-            <li>
-              <div>
-                <p>Feeding</p>
-                <p>Lunch at Chicken Republic</p>
-              </div>
-              <div>3200</div>
-            </li>
+            {{/transactions}}
           </script>
         </ul>
       </div>
