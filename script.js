@@ -44,7 +44,6 @@ var financeApp = {
     var data = this.filterTransactions(),
       todaysDate = moment();
     // this.$input.val(''); // find a jquery way to reset form values
-    console.log("this");
     this.$transListing.html(Mustache.render(this.template, data));
   },
 
@@ -66,15 +65,21 @@ var financeApp = {
   },
 
   isInputFormValid: function($transInputForm) {
-    var amount = $transInputForm.children('#transaction-amount'),
-      note = $transInputForm.children('#note'),
-      date = $transInputForm.children('#transaction-date'),
-      category = $transInputForm.children('#transaction-category');
+    var $formFields = $transInputForm.children(),
+      amount = $formFields.find('#transaction-amount'),
+      note = $formFields.find('#note'),
+      date = $formFields.find('#transaction-date'),
+      category = $formFields.find('#transaction-category');
+      console.log($formFields);
+    console.log(amount);
+    console.log(note.val());
+    console.log(date.val());
     return amount.length && note.length && date.length;
   },
 
   addTransaction: function(event) {
-    if (this.isInputFormValid(event.target)) {
+  	event.preventDefault();
+    if (this.isInputFormValid($(event.target))) {
       $transInputForm = event.target;
       var amount = $transInputForm.children('#transaction-amount'),
         note = $transInputForm.children('#note'),
@@ -83,6 +88,8 @@ var financeApp = {
       var newTransaction = { amount, note, category, date };
       this.transactions.push(newTransaction);
       this.saveTransactions();
+    } else {
+      console.log("What have you done?");
     }
   },
 
