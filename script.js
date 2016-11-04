@@ -19,12 +19,14 @@ var financeApp = {
   computeTotals: function() {
     var indexedCategories = this.indexCategories();
     this.data.incomeTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = indexedCategories[t.category].type == "income" ? t.amount : 0;
+      var amt = indexedCategories[t.category].type == "income" ? parseFloat(t.amount) : 0;
+      console.log(amt);
       return amt;
     });
 
     this.data.expenseTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = indexedCategories[t.category].type == "expense" ? t.amount : 0;
+      var amt = indexedCategories[t.category].type == "expense" ? parseFloat(t.amount) : 0;
+      console.log(amt);
       return amt;
     });
     this.data.balance = this.data.incomeTotal - this.data.expenseTotal;
