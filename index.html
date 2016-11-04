@@ -12,11 +12,12 @@
         <input type="text" placeholder="Amount" id="transaction-amount">
         <br>
         <select id="transaction-category">
-          <option disabled selected>Category</option>
-          <option>Transportation</option>
-          <option>Feeding</option>
-          <option>Drinking</option>
-          <option></option>
+          <script id="cat-template" type="text/template">
+            <option disabled selected>Category</option>
+            {{#categories}}
+            <option>{{.}}</option>
+            {{/categories}}
+          </script>
         </select>
         <br>
         <input type="text" placeholder="Note" id="note">
@@ -44,7 +45,7 @@
       <h3>Transactions</h3>
       <div id="transaction-listing-div">
         <ul id="transaction-listing">
-          <script id="template" type="text/template">
+          <script id="transactions-template" type="text/template">
             {{#transactions}}
             <li>
               <div>

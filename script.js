@@ -1,5 +1,6 @@
 var financeApp = {
   init: function() {
+  	console.log("Starting ...");
     this.loadData();
     this.cacheDom();
     this.bindEvents();
@@ -7,6 +8,7 @@ var financeApp = {
   },
 
   loadData: function() {
+  	console.log("We made it here");
     if ($.trim(localStorage.getItem('finData')).length > 0) {
       this.data = $.parseJSON(localStorage.getItem('finData'));
     } else {
@@ -21,6 +23,7 @@ var financeApp = {
   },
 
   cacheDom: function() {
+  	console.log("And here");
     this.$doc = $('#container');
     this.$inputForm = this.$doc.find('#transaction-input-form');
     this.$transAmount = this.$doc.find('#transaction-amount');
@@ -29,7 +32,9 @@ var financeApp = {
     this.$addButton = this.$doc.find('#add-transaction');
     this.$dataDiv = this.$doc.find('#transaction-listing-div');
     this.$transListing = this.$doc.find('#transaction-listing');
-    this.template = this.$doc.find('#template').html();
+    this.$transCategories = this.$doc.find('#transaction-category');
+    this.categoriesTemplate = this.$doc.find('#cat-template').html();
+    this.transTemplate = this.$doc.find('#transactions-template').html();
   },
 
   bindEvents: function() {
@@ -44,13 +49,13 @@ var financeApp = {
   render: function() {
     var data = this.filterTransactions(),
       todaysDate = moment();
-    // this.$input.val(''); // find a jquery way to reset form values
-    this.$transListing.html(Mustache.render(this.template, data));
+    this.$transCategories.html(Mustache.render(this.categoriesTemplate, data));
+    this.$transListing.html(Mustache.render(this.transTemplate, data));
   },
 
 
   renderError: function(errorType) {
-  	
+
   },
 
   renderEditBox: function(event) {},
