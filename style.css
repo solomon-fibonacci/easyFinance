@@ -1,0 +1,21 @@
+#container {
+    background-color: rgba(95, 58, 174, 1);
+    color: #fff;
+    font-family: 'Dosis', sans-serif;
+    max-width: 750px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.total {
+	list-style: none;
+	display: inline-block;
+}
+
+.total-figure {
+	text-align: center;
+}
+
+a {
+	color: white;
+}
