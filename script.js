@@ -17,13 +17,14 @@ var financeApp = {
   },
 
   computeTotals: function() {
-    var indexedCategories = this.indexCategories();
+    this.indexedCategories = this.indexCategories();
+    var self = this;
     this.data.incomeTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = indexedCategories[t.category].type == "income" ? parseFloat(t.amount) : 0;
+      var amt = self.indexedCategories[t.categoryID].type == "income" ? parseFloat(t.amount) : 0;
       return amt;
     });
     this.data.expenseTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = indexedCategories[t.category].type == "expense" ? parseFloat(t.amount) : 0;
+      var amt = self.indexedCategories[t.categoryID].type == "expense" ? parseFloat(t.amount) : 0;
       return amt;
     });
     this.data.balance = this.data.incomeTotal - this.data.expenseTotal;
@@ -65,9 +66,18 @@ var financeApp = {
     localStorage.setItem('finData', ingoingData);
   },
 
+  getTransactionCategories: function() {
+  	var self = this;
+    this.data.transactions = _.map(this.data.transactions, function(t) {
+      t.category = self.indexedCategories[t.categoryID].category;
+      return t
+    });
+  },
+
   render: function() {
     var data = this.filterTransactions(),
       todaysDate = moment();
+    this.getTransactionCategories();
     this.$summary.html(Mustache.render(this.summaryTemplate, data));
     this.$transCategories.html(Mustache.render(this.categoriesTemplate, data));
     this.$transListing.html(Mustache.render(this.transTemplate, data));
@@ -81,12 +91,13 @@ var financeApp = {
   renderEditBox: function(event) {},
 
   isInputFormValid: function($form) {
+  	console.log($form);
     var amount = $form.find('input#transaction-amount').val(),
       note = $form.find('#note').val(),
       date = $form.find('#transaction-date').val(),
-      category = $form.find('#transaction-category').val();
-    if (amount.length, note.length && date.length && category.length) {
-      return { amount, note, category, date };
+      categoryID = $form.find('#transaction-category').val();
+    if (amount.length, note.length && date.length && categoryID.length) {
+      return { amount, note, categoryID, date };
     } else {
       return false;
     }
@@ -95,6 +106,7 @@ var financeApp = {
   addTransaction: function(event) {
     var $form = $(event.target),
       newTransaction = this.isInputFormValid($form);
+
     if (newTransaction) {
       this.data.transactions.push(newTransaction);
       this.saveTransactions();
