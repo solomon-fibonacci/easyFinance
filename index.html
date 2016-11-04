@@ -32,20 +32,22 @@
     </div>
     <div id="data-display">
       <div id="financeSummary">
-        <h2> Balance: 1,500,000.00</h2>
-        <div>
-          <div class="total">
-            <div>Total Income
+        <script id="summary-template" type="text/template">
+          <h2> Balance: {{balance}}</h2>
+          <div>
+            <div class="total">
+              <div>Total Income
+              </div>
+              <div class="total-figure">{{incomeTotal}}</div>
             </div>
-            <div class="total-figure">4,000,000</div>
-          </div>
-          <div class="total">
-            <div>Total Expense
+            <div class="total">
+              <div>Total Expense
+              </div>
+              <div class="total-figure">{{expenseTotal}}</div>
             </div>
-            <div class="total-figure">2,500,000</div>
           </div>
-        </div>
-        <a href="#">Detailed Summary</a>
+          <a href="#">Detailed Summary</a>
+        </script>
       </div>
       <h3>Transactions</h3>
       <div id="transaction-listing-div">

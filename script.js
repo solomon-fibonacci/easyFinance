@@ -14,24 +14,25 @@ var financeApp = {
       this.data = { transactions: [], categories: [] };
     }
     this.displayDate = moment().format("ddd, Do MMM");
-    console.log(this.categories);
   },
 
   computeTotals: function() {
     var indexedCategories = this.indexCategories();
-    var incomeTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = indexCategories[t.category].type == "income" ? t.amount : 0;
+    this.data.incomeTotal = _.sumBy(this.data.transactions, function(t) {
+      var amt = indexedCategories[t.category].type == "income" ? t.amount : 0;
       return amt;
     });
 
-    var expenseTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = indexCategories[t.category].type == "expense" ? t.amount : 0;
+    this.data.expenseTotal = _.sumBy(this.data.transactions, function(t) {
+      var amt = indexedCategories[t.category].type == "expense" ? t.amount : 0;
       return amt;
     });
+    this.data.balance = this.data.incomeTotal - this.data.expenseTotal;
+    console.log(this.data);
   },
 
   indexCategories: function() {
-    var indexedCat = _.values(_.keyBy(this.data.categories, 'catID'));
+    var indexedCat = _.keyBy(this.data.categories, 'catID');
     return indexedCat;
   },
 
