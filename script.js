@@ -10,10 +10,17 @@ var financeApp = {
     if ($.trim(localStorage.getItem('finData')).length > 0) {
       this.data = $.parseJSON(localStorage.getItem('finData'));
     } else {
-      this.data = {transactions:[]};
+      this.data = {transactions:[], categories:[]};
     }
     this.displayDate = moment().format("ddd, Do MMM");
+    this.categories = this.indexCategories();
   },
+
+  indexCategories: function() {
+  	var indexedCat = _.keyBy(this.data.categories, 'catID');
+  	return indexedCat;
+  },
+
 
   filterTransactions: function() {
   	//do filtering here
