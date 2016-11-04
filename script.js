@@ -1,6 +1,5 @@
 var financeApp = {
   init: function() {
-  	console.log("Starting ...");
     this.loadData();
     this.cacheDom();
     this.bindEvents();
@@ -8,7 +7,6 @@ var financeApp = {
   },
 
   loadData: function() {
-  	console.log("We made it here");
     if ($.trim(localStorage.getItem('finData')).length > 0) {
       this.data = $.parseJSON(localStorage.getItem('finData'));
     } else {
@@ -23,7 +21,6 @@ var financeApp = {
   },
 
   cacheDom: function() {
-  	console.log("And here");
     this.$doc = $('#container');
     this.$inputForm = this.$doc.find('#transaction-input-form');
     this.$transAmount = this.$doc.find('#transaction-amount');
