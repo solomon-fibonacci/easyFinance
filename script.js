@@ -95,7 +95,6 @@ var financeApp = {
   addTransaction: function(event) {
     var $form = $(event.target),
       newTransaction = this.isInputFormValid($form);
-
     if (newTransaction) {
       this.data.transactions.push(newTransaction);
       this.saveTransactions();
