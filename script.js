@@ -80,10 +80,6 @@ var financeApp = {
 
   renderEditBox: function(event) {},
 
-  isInputValid: function() {
-
-  },
-
   isInputFormValid: function($form) {
     var amount = $form.find('input#transaction-amount').val(),
       note = $form.find('#note').val(),
