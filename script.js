@@ -52,7 +52,9 @@ var financeApp = {
     this.$dataDiv = this.$doc.find('#transaction-listing-div');
     this.$transListing = this.$doc.find('#transaction-listing');
     this.$transCategories = this.$doc.find('#transaction-category');
+    this.$summary = this.$doc.find('#financeSummary');
     this.categoriesTemplate = this.$doc.find('#cat-template').html();
+    this.summaryTemplate = this.$doc.find('#summary-template').html();
     this.transTemplate = this.$doc.find('#transactions-template').html();
   },
 
@@ -61,13 +63,14 @@ var financeApp = {
   },
 
   saveTransactions: function() {
-    var ingoingData = JSON.stringify({ transactions: this.data.transactions });
+    var ingoingData = JSON.stringify({ transactions: this.data.transactions, categories: this.data.categories });
     localStorage.setItem('finData', ingoingData);
   },
 
   render: function() {
     var data = this.filterTransactions(),
       todaysDate = moment();
+    this.$summary.html(Mustache.render(this.summaryTemplate, data));
     this.$transCategories.html(Mustache.render(this.categoriesTemplate, data));
     this.$transListing.html(Mustache.render(this.transTemplate, data));
   },
