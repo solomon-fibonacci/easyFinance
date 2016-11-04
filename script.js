@@ -1,6 +1,7 @@
 var financeApp = {
   init: function() {
     this.loadData();
+    this.computeTotals();
     this.cacheDom();
     this.bindEvents();
     this.render();
@@ -10,21 +11,34 @@ var financeApp = {
     if ($.trim(localStorage.getItem('finData')).length > 0) {
       this.data = $.parseJSON(localStorage.getItem('finData'));
     } else {
-      this.data = {transactions:[], categories:[]};
+      this.data = { transactions: [], categories: [] };
     }
     this.displayDate = moment().format("ddd, Do MMM");
-    this.categories = this.indexCategories();
+    console.log(this.categories);
+  },
+
+  computeTotals: function() {
+    var indexedCategories = this.indexCategories();
+    var incomeTotal = _.sumBy(this.data.transactions, function(t) {
+      var amt = indexCategories[t.category].type == "income" ? t.amount : 0;
+      return amt;
+    });
+
+    var expenseTotal = _.sumBy(this.data.transactions, function(t) {
+      var amt = indexCategories[t.category].type == "expense" ? t.amount : 0;
+      return amt;
+    });
   },
 
   indexCategories: function() {
-  	var indexedCat = _.keyBy(this.data.categories, 'catID');
-  	return indexedCat;
+    var indexedCat = _.values(_.keyBy(this.data.categories, 'catID'));
+    return indexedCat;
   },
 
 
   filterTransactions: function() {
-  	//do filtering here
-  	return this.data;
+    //do filtering here
+    return this.data;
   },
 
   cacheDom: function() {
@@ -87,6 +101,7 @@ var financeApp = {
     if (newTransaction) {
       this.data.transactions.push(newTransaction);
       this.saveTransactions();
+      this.computeTotals();
       this.render();
     } else {
       console.log("What have you done?");
