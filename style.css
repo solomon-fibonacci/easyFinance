@@ -20,15 +20,20 @@ a {
   color: white;
 }
 
-#input_and_summary {}
+#input_and_summary {
+	position: relative;
+}
 
 #transaction-input-div {
-  display: inline-block;
+  /*display: inline-block;*/
 }
 
 #financeSummary {
   display: inline-block;
   border: 1px solid #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .transaction {
@@ -38,5 +43,5 @@ a {
 
 .amount, .particulars {
 	display: inline-block;
-	
+
 }
