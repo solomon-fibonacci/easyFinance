@@ -21,19 +21,34 @@ a {
 }
 
 #input_and_summary {
-	position: relative;
+  position: relative;
 }
 
 #transaction-input-div {
   /*display: inline-block;*/
 }
 
+@media screen and (min-width: 480px) {
+  #financeSummary {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
 #financeSummary {
-  display: inline-block;
+  /*display: inline-block;*/
   border: 1px solid #fff;
-  position: absolute;
-  right: 0;
-  top: 0;
+  min-width: 250px;
+}
+
+.total {
+  margin: 0 3%;
+}
+
+#data-display {
+  position: relative;
+  max-width: 450px;
 }
 
 .transaction {
@@ -41,7 +56,16 @@ a {
   padding-top: 2%;
 }
 
-.amount, .particulars {
-	display: inline-block;
+.note {
+  font-size: 0.7em;
+}
 
+.amount,
+.particulars {
+  display: inline-block;
+}
+
+.amount {
+  position: absolute;
+  right: 0;
 }
