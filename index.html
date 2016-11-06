@@ -8,29 +8,29 @@
 
 <body>
   <div id="container">
-    <div id="transaction-input-div">
-      <form id="transaction-input-form">
-        <input type="text" placeholder="Amount" id="transaction-amount">
-        <br>
-        <select id="transaction-category">
-          <script id="cat-template" type="text/template">
-            <option disabled selected>Category</option>
-            {{#categories}}
-            <option value="{{catID}}">{{category}} ({{type}})</option>
-            {{/categories}}
-          </script>
-        </select>
-        <br>
-        <input type="text" placeholder="Note" id="note">
-        <br>
-        <input type="date" id="transaction-date">
-        <br>
-        <br>
-        <input type="submit" value="Add Transaction" id="add-transaction">
-        <br>
-      </form>
-    </div>
-    <div id="data-display">
+    <div id="input_and_summary">
+      <div id="transaction-input-div">
+        <form id="transaction-input-form">
+          <input type="text" placeholder="Amount" id="transaction-amount">
+          <br>
+          <select id="transaction-category">
+            <script id="cat-template" type="text/template">
+              <option disabled selected>Category</option>
+              {{#categories}}
+              <option value="{{catID}}">{{category}} ({{type}})</option>
+              {{/categories}}
+            </script>
+          </select>
+          <br>
+          <input type="text" placeholder="Note" id="note">
+          <br>
+          <input type="date" id="transaction-date">
+          <br>
+          <br>
+          <input type="submit" value="Add Transaction" id="add-transaction">
+          <br>
+        </form>
+      </div>
       <div id="financeSummary">
         <script id="summary-template" type="text/template">
           <h2> Balance: {{balance}}</h2>
@@ -49,29 +49,31 @@
           <a href="#">Detailed Summary</a>
         </script>
       </div>
+    </div>
+    <div id="data-display">
       <h3>Transactions</h3>
       <div id="transaction-listing-div">
-        <ul id="transaction-listing">
+        <div id="transaction-listing">
           <script id="transactions-template" type="text/template">
             {{#transactions}}
-            <li>
-              <div>
-                <p>{{category}}</p>
-                <p>{{note}}</p>
+            <div class="transaction">
+              <div class="particulars">
+                {{category}}
+                <br> {{note}}
               </div>
-              <div>{{amount}}</div>
-            </li>
+              <div class="amount">{{amount}}</div>
+            </div>
             {{/transactions}}
           </script>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment-with-locales.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
-  <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,21 +1,42 @@
 #container {
-    background-color: rgba(95, 58, 174, 1);
-    color: #fff;
-    font-family: 'Dosis', sans-serif;
-    max-width: 750px;
-    margin: 0 auto;
-    padding-bottom: 10px;
+  background-color: rgba(95, 58, 174, 1);
+  color: #fff;
+  font-family: 'Dosis', sans-serif;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .total {
-	list-style: none;
-	display: inline-block;
+  list-style: none;
+  display: inline-block;
 }
 
 .total-figure {
-	text-align: center;
+  text-align: center;
 }
 
 a {
-	color: white;
+  color: white;
+}
+
+#input_and_summary {}
+
+#transaction-input-div {
+  display: inline-block;
+}
+
+#financeSummary {
+  display: inline-block;
+  border: 1px solid #fff;
+}
+
+.transaction {
+  /*border-bottom: 1px solid #777;*/
+  padding-top: 2%;
+}
+
+.amount, .particulars {
+	display: inline-block;
+	
 }
