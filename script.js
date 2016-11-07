@@ -70,7 +70,7 @@ var financeApp = {
   	var self = this;
     this.data.transactions = _.map(this.data.transactions, function(t) {
       t.category = self.indexedCategories[t.categoryID].category;
-      return t
+      return t;
     });
   },
 
