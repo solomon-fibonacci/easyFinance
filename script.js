@@ -35,15 +35,6 @@ var financeApp = {
     return indexedCat;
   },
 
-computeSummaryByCategory: function() {
-
-},
-
-  filterTransactions: function() {
-    //do filtering here
-    return this.data;
-  },
-
   cacheDom: function() {
     this.$doc = $('#container');
     this.$inputForm = this.$doc.find('#transaction-input-form');
@@ -64,18 +55,6 @@ computeSummaryByCategory: function() {
     this.$inputForm.on('submit', this.addTransaction.bind(this));
   },
 
-  saveTransactions: function() {
-    var ingoingData = JSON.stringify({ transactions: this.data.transactions, categories: this.data.categories });
-    localStorage.setItem('finData', ingoingData);
-  },
-
-  getTransactionCategories: function() {
-  	var self = this;
-    this.data.transactions = _.map(this.data.transactions, function(t) {
-      t.category = self.indexedCategories[t.categoryID].category;
-      return t;
-    });
-  },
 
   render: function() {
     var data = this.filterTransactions(),
@@ -92,9 +71,29 @@ computeSummaryByCategory: function() {
   },
 
   renderEditBox: function(event) {},
+  saveTransactions: function() {
+    var ingoingData = JSON.stringify({ transactions: this.data.transactions, categories: this.data.categories });
+    localStorage.setItem('finData', ingoingData);
+  },
 
+  getTransactionCategories: function() {
+    var self = this;
+    this.data.transactions = _.map(this.data.transactions, function(t) {
+      t.category = self.indexedCategories[t.categoryID].category;
+      return t;
+    });
+  },
+
+  computeSummaryByCategory: function() {
+
+  },
+
+  filterTransactions: function() {
+    //do filtering here
+    return this.data;
+  },
   isInputFormValid: function($form) {
-  	console.log($form);
+    console.log($form);
     var amount = $form.find('input#transaction-amount').val(),
       note = $form.find('#note').val(),
       date = $form.find('#transaction-date').val(),
