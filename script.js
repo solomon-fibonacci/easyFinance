@@ -5,6 +5,7 @@ var financeApp = {
     this.cacheDom();
     this.bindEvents();
     this.render();
+    this.computeSummaryByCategory();
   },
 
   loadData: function() {
@@ -17,14 +18,14 @@ var financeApp = {
   },
 
   computeTotals: function() {
-    this.indexedCategories = this.indexCategories();
+    this.data.indexedCategories = this.indexCategories();
     var self = this;
     this.data.incomeTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = self.indexedCategories[t.categoryID].type == "income" ? parseFloat(t.amount) : 0;
+      var amt = self.data.indexedCategories[t.categoryID].type == "income" ? parseFloat(t.amount) : 0;
       return amt;
     });
     this.data.expenseTotal = _.sumBy(this.data.transactions, function(t) {
-      var amt = self.indexedCategories[t.categoryID].type == "expense" ? parseFloat(t.amount) : 0;
+      var amt = self.data.indexedCategories[t.categoryID].type == "expense" ? parseFloat(t.amount) : 0;
       return amt;
     });
     this.data.balance = this.data.incomeTotal - this.data.expenseTotal;
@@ -79,13 +80,19 @@ var financeApp = {
   getTransactionCategories: function() {
     var self = this;
     this.data.transactions = _.map(this.data.transactions, function(t) {
-      t.category = self.indexedCategories[t.categoryID].category;
+      t.category = self.data.indexedCategories[t.categoryID].category;
       return t;
     });
   },
 
   computeSummaryByCategory: function() {
-
+    var self = this;
+    _.forEach(this.data.indexedCategories, function(cat) {
+      cat.total = _.sumBy(self.data.transactions, function(t) {
+        var amt = self.data.indexedCategories[t.categoryID].catID == cat.catID ? parseFloat(t.amount) : 0;
+        return amt;
+      });
+    });
   },
 
   filterTransactions: function() {
