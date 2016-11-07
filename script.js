@@ -35,6 +35,9 @@ var financeApp = {
     return indexedCat;
   },
 
+computeSummaryByCategory: function() {
+
+},
 
   filterTransactions: function() {
     //do filtering here
