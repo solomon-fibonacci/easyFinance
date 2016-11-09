@@ -54,6 +54,7 @@ var financeApp = {
 
   bindEvents: function() {
     this.$inputForm.on('submit', this.addTransaction.bind(this));
+    //todo: event handler for detailed summary click.
   },
 
 
