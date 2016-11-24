@@ -69,7 +69,7 @@ var financeApp = {
 
 
   renderError: function(errorType) {
-
+    //render errors here;
   },
 
   renderEditBox: function(event) {},
